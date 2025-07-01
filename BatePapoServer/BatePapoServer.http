@@ -1,0 +1,6 @@
+@BatePapoServer_HostAddress = http://localhost:5131
+
+GET {{BatePapoServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
