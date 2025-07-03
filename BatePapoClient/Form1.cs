@@ -17,13 +17,13 @@ namespace BatePapoClient
             _connection = new HubConnectionBuilder()
                 .WithUrl("http://localhost:5000/chathub")
                 .Build();
-            _connection.On<string, string>("ReceiveMessage", (user, message)) =>
+            _connection.On<string, string>("ReceiveMessage", (user, message) =>
                 {
-                this.Invoke((Action)(() =>
-                    {
-                        lstMessages.Items.Add($"{user}: {message}");
-                    }));
-            });
+                    this.Invoke((Action)(() =>
+                        {
+                            lstMessages.Items.Add($"{user}: {message}");
+                        }));
+                });
             try
             {
                 await _connection.StartAsync();
