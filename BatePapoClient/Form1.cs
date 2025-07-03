@@ -36,8 +36,19 @@ namespace BatePapoClient
         }               
         
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private async void btnEnviar_Click(object sender, EventArgs e)
+
         {
+            try
+            {
+                await _connection.InvokeAsync("SendMessage", txtUser.Text, txtMessage.Text);
+                txtMessage.Clear();
+            }
+            catch (Exception ex)
+            {
+                lstMessages.Items.Add("Erro ao enviar: {ex.Message}");
+                
+            }
 
 
         }
